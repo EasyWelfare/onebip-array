@@ -503,3 +503,21 @@ function array_find(iterable $array, callable $pred)
         }
     }
 }
+
+/**
+ * Returns a subset of the given array, using the given keys.
+ */
+function array_select_keys(array $array, iterable $keys): array
+{
+    return array_reduce(
+        $keys,
+        function (array $acc, $k) use ($array): array {
+            if (array_key_exists($k, $array)) {
+                $acc[$k] = $array[$k];
+            }
+
+            return $acc;
+        },
+        []
+    );
+}
