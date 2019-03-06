@@ -2,7 +2,9 @@
 
 namespace Onebip;
 
-class ArrayFindTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayFindTest extends TestCase
 {
     public function testArrayFind()
     {
@@ -10,14 +12,18 @@ class ArrayFindTest extends \PHPUnit_Framework_TestCase
             2,
             array_find(
                 [1, 2, 3, 4],
-                function ($n) { return $n % 2 === 0; }
+                function ($n) {
+                    return 0 === $n % 2;
+                }
             )
         );
 
         $this->assertNull(
             array_find(
                 [1, 2, 3, 4],
-                function ($n) { return $n > 5; }
+                function ($n) {
+                    return $n > 5;
+                }
             )
         );
     }

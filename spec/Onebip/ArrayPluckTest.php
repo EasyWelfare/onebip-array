@@ -2,15 +2,19 @@
 
 namespace Onebip;
 
-class ArrayPluckTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayPluckTest extends TestCase
 {
     public function testArrayPluckColumn()
     {
         $this->assertSame(
             ['bar', 'bar'],
-            array_pluck([['foo' => 'bar', 'bis' => 'ter'],
-                         ['foo' => 'bar', 'bis' => 'ter']],
-                        'foo')
+            array_pluck(
+                [['foo' => 'bar', 'bis' => 'ter'],
+                         ['foo' => 'bar', 'bis' => 'ter'], ],
+                'foo'
+            )
         );
     }
 
@@ -21,7 +25,7 @@ class ArrayPluckTest extends \PHPUnit_Framework_TestCase
             array_pluck(
                 new \ArrayIterator([
                     ['foo' => 'bar', 'bis' => 'ter'],
-                    ['foo' => 'bar', 'bis' => 'ter']
+                    ['foo' => 'bar', 'bis' => 'ter'],
                 ]),
                 'foo'
             )
@@ -32,10 +36,12 @@ class ArrayPluckTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             ['bar', null, 'bar'],
-            array_pluck([['foo' => 'bar', 'bis' => 'ter'],
+            array_pluck(
+                [['foo' => 'bar', 'bis' => 'ter'],
                          ['foz' => 'bar', 'bis' => 'ter'],
-                         ['foo' => 'bar', 'bis' => 'ter']],
-                        'foo')
+                         ['foo' => 'bar', 'bis' => 'ter'], ],
+                'foo'
+            )
         );
     }
 
@@ -43,10 +49,12 @@ class ArrayPluckTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             ['bar', null, 'bar'],
-            array_pluck([['foo' => 'bar', 'bis' => 'ter'],
-                         "a scalar value",
-                         ['foo' => 'bar', 'bis' => 'ter']],
-                        'foo')
+            array_pluck(
+                [['foo' => 'bar', 'bis' => 'ter'],
+                         'a scalar value',
+                         ['foo' => 'bar', 'bis' => 'ter'], ],
+                'foo'
+            )
         );
     }
 }

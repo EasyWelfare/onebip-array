@@ -2,9 +2,9 @@
 
 namespace Onebip;
 
-use function Onebip\array_reduce;
+use PHPUnit\Framework\TestCase;
 
-class ArrayReduceTest extends \PHPUnit_Framework_TestCase
+class ArrayReduceTest extends TestCase
 {
     public function testArrayReduce()
     {
@@ -12,7 +12,9 @@ class ArrayReduceTest extends \PHPUnit_Framework_TestCase
             45,
             array_reduce(
                 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-                function ($acc, $n) { return $acc + $n; },
+                function ($acc, $n) {
+                    return $acc + $n;
+                },
                 0
             )
         );
@@ -24,7 +26,9 @@ class ArrayReduceTest extends \PHPUnit_Framework_TestCase
             45,
             array_reduce(
                 new Range(0, 10),
-                function ($acc, $n) { return $acc + $n; },
+                function ($acc, $n) {
+                    return $acc + $n;
+                },
                 0
             )
         );

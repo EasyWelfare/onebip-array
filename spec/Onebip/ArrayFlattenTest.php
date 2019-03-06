@@ -2,7 +2,9 @@
 
 namespace Onebip;
 
-class ArrayFlattenTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayFlattenTest extends TestCase
 {
     public function testArrayFlatten()
     {
@@ -22,7 +24,8 @@ class ArrayFlattenTest extends \PHPUnit_Framework_TestCase
                     new \ArrayIterator([2,
                         new \ArrayIterator([3,
                             new \ArrayIterator([4,
-                                new \ArrayIterator([5])])])])]))
+                                new \ArrayIterator([5]), ]), ]), ]), ])
+            )
         );
     }
 }

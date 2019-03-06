@@ -2,7 +2,9 @@
 
 namespace Onebip;
 
-class ArrayMerge extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayMerge extends TestCase
 {
     public function testMerge()
     {

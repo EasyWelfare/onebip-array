@@ -2,13 +2,17 @@
 
 namespace Onebip;
 
-class ArrayMapTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ArrayMapTest extends TestCase
 {
     public function testMap()
     {
         $this->assertSame(
             [2, 4, 6],
-            array_map([1, 2, 3], function($value) { return $value * 2; })
+            array_map([1, 2, 3], function ($value) {
+                return $value * 2;
+            })
         );
     }
 
@@ -16,7 +20,9 @@ class ArrayMapTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertSame(
             [2, 4, 6],
-            array_map(new Range(1, 4), function($value) { return $value * 2; })
+            array_map(new Range(1, 4), function ($value) {
+                return $value * 2;
+            })
         );
     }
 
@@ -40,7 +46,9 @@ class ArrayMapTest extends \PHPUnit_Framework_TestCase
 
     public function testIndexesArePassedAsParameters()
     {
-        $returnKeys = function($value, $key) { return $key; };
+        $returnKeys = function ($value, $key) {
+            return $key;
+        };
         $this->assertSame(
             ['one', 'two', 'three'],
             array_map(['one' => 1, 'two' => 2, 'three' => 3], $returnKeys)

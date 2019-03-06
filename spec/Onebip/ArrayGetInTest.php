@@ -1,9 +1,10 @@
 <?php
+
 namespace Onebip;
 
-use ArrayIterator;
+use PHPUnit\Framework\TestCase;
 
-class ArrayGetIn extends \PHPUnit_Framework_TestCase
+class ArrayGetIn extends TestCase
 {
     public function testArray()
     {
@@ -11,7 +12,7 @@ class ArrayGetIn extends \PHPUnit_Framework_TestCase
             [
                 'foo' => [
                     [
-                        'bar' => 42
+                        'bar' => 42,
                     ],
                 ],
             ],
@@ -26,7 +27,7 @@ class ArrayGetIn extends \PHPUnit_Framework_TestCase
             [
                 'foo' => [
                     [
-                        'bar' => 42
+                        'bar' => 42,
                     ],
                 ],
             ],
@@ -50,7 +51,10 @@ class ArrayGetIn extends \PHPUnit_Framework_TestCase
         $this->assertSame(
             0,
             array_get_in(
-                ['a' => ['b' => '']], ['a', 'b', 'c'], 0)
+                ['a' => ['b' => '']],
+                ['a', 'b', 'c'],
+                0
+            )
             );
     }
 }
