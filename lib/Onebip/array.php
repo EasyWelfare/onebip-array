@@ -521,3 +521,24 @@ function array_select_keys(array $array, iterable $keys): array
         []
     );
 }
+
+/**
+ * Partitions array into two arrays, the first one containing elements for
+ * which the closure returned true, the second one - false.
+ */
+function array_partition(iterable $array, callable $pred): array
+{
+    return array_reduce(
+        $array,
+        function (array $acc, $elem) use ($pred): array {
+            if (call_user_func($pred, $elem)) {
+                array_push($acc[0], $elem);
+            } else {
+                array_push($acc[1], $elem);
+            }
+
+            return $acc;
+        },
+        [[], []]
+    );
+}
