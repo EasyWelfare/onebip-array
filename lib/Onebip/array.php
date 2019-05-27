@@ -345,7 +345,7 @@ function array_as_hierarchy(iterable $array, string $separator = '.'): array
     $hierarchy = [];
     foreach ($array as $key => $value) {
         $segments = explode($separator, $key);
-        if ($segments === false) {
+        if (false === $segments) {
             continue;
         }
 
@@ -541,4 +541,37 @@ function array_partition(iterable $array, callable $pred): array
         },
         [[], []]
     );
+}
+
+/**
+ * Returns the index of the first element for which the predicate returns true.
+ */
+function array_index_of(iterable $array, callable $pred)
+{
+    foreach ($array as $k => $v) {
+        if (call_user_func($pred, $v)) {
+            return $k;
+        }
+    }
+}
+
+/**
+ * Removed the first element for which the predicate returns true and
+ * returns it.
+ */
+function array_remove(array &$array, callable $pred)
+{
+    $i = array_index_of($array, $pred);
+    if (null === $i) {
+        return null;
+    }
+
+    $v = $array[$i];
+    if (is_numeric_array($array)) {
+        array_splice($array, $i, 1);
+    } else {
+        unset($array[$i]);
+    }
+
+    return $v;
 }
