@@ -5,6 +5,29 @@ namespace Onebip;
 use InvalidArgumentException;
 use Traversable;
 
+
+/**
+ * Prefix all array's keys with given string
+ *
+ * Examples:
+ *     $this->assertSame(
+ *         ['p.a' => 1, 'p.b' => 2, 'p.c' => 3],
+ *         array_prefix_keys('p.', ['a' => 1, 'b' => 2, 'c' => 3])
+ *    )
+ */
+function array_prefix_keys(string $prefix, array $array): array
+{
+    if (is_numeric_array($array)) {
+        return $array;
+    }
+
+    $result = [];
+    foreach ($array as $key => $value) {
+        $result[$prefix . $key] = $value;
+    }
+    return $result;
+}
+
 /*
  * Variant of PHP's array_reduce, but it supports any traversable in input
  * (arrays or objects instance Traversable) and is sensible to associative
